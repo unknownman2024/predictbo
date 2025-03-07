@@ -82,16 +82,16 @@
             let week1 = day1 * week1Multipliers[industry][talk];
             let [week2Drop, week3Drop, week4Drop] = dropRates[industry][talk];
 
-            let week2 = week1 * (1 - week2Drop);
-            let week3 = week2 * (1 - week3Drop);
-            let week4 = week3 * (1 - week4Drop);
-            let lifetime = week1 + week2 + week3 + week4;
+            let week2 = week1 + (week1 * (1 - week2Drop));
+            let week3 = week2 + (week2 * (1 - week3Drop));
+            let week4 = week3 + (week3 * (1 - week4Drop));
+            let lifetime = week4;
 
             document.getElementById('result').innerHTML = `
-                <p>Week 1: ${week1.toFixed(2)}</p>
-                <p>Week 2: ${week2.toFixed(2)}</p>
-                <p>Week 3: ${week3.toFixed(2)}</p>
-                <p>Week 4: ${week4.toFixed(2)}</p>
+                <p>Week 1 Total: ${week1.toFixed(2)}</p>
+                <p>Week 2 Total: ${week2.toFixed(2)}</p>
+                <p>Week 3 Total: ${week3.toFixed(2)}</p>
+                <p>Week 4 Total: ${week4.toFixed(2)}</p>
                 <p>Lifetime Collection: ${lifetime.toFixed(2)}</p>
             `;
         }
